@@ -1,0 +1,21 @@
+# Virtual Environment
+.hacker_news/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Django
+*.log
+db.sqlite3
+local_settings.py
+
+# Environment variables
+.env
+.env.*
+
+# IDE
+.idea/
+
+# macOS
+.DS_Store
