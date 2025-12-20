@@ -20,3 +20,6 @@ local_settings.py
 
 # macOS
 .DS_Store
+
+# 설정
+ch3/auth_user/config/settings.py

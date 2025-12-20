@@ -5,4 +5,6 @@ urlpatterns = [
     path("", views.HomeView.as_view(), name="home"), # 내가 만든 기능 → 직접 view 연결
     path("users/", include("django.contrib.auth.urls")), # 프레임워크가 제공하는 기능 묶음
     path("users/sign_up/", views.SignUpView.as_view(), name="sign_up"),
+    path("users/social/kakao/login/", views.KakaoSocialLoginView.as_view(), name="kakao_social_login"),
+    path("users/social/kakao/callback/", views.KakaoSocialCallbackView.as_view(), name="kakao_social_login_callback"),
 ]
