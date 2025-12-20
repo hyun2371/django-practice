@@ -75,7 +75,8 @@ class KakaoSocialCallbackView(View):
                     user = User.objects.create_user(
                         username=username,
                         email=email,
-                        password=str(uuid.uuid4())
+                        password=str(uuid.uuid4()),
+                        social_provider = "kakao",
                     )
 
                 login(request,user)
