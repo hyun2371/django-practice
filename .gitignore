@@ -1,5 +1,6 @@
 # Virtual Environment
 .hacker_news/
+.auth_user/
 
 # Python
 __pycache__/
