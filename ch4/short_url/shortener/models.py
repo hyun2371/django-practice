@@ -1,4 +1,8 @@
+import random
+
 from django.db import models
+import string
+
 
 class ShortURL(models.Model):
     code = models.CharField(max_length=8, unique=True)
@@ -11,3 +15,8 @@ class ShortURL(models.Model):
     class Meta:
         app_label = "shortener"
         db_table = "short_url"
+
+    @staticmethod
+    def generate_code():
+        characters = string.ascii_letters + string.digits
+        return "".join(random.choices(characters, k=8)) #리스트 -> string

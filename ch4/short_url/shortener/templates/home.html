@@ -3,6 +3,14 @@
 {% block content %}
 
 <div>
+  <form action="{% url 'shorten_url' %}" method="post" class="d-flex align-center">
+    {% csrf_token %}
+    <div class="me-2">
+      {{ form }}
+      <button type="submit" class="btn btn-primary">생성</button>
+    </div>
+  </form>
+  <hr>
   <table class="table">
       <thead>
         <tr>
