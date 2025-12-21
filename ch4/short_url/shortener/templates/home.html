@@ -29,8 +29,9 @@
             <td> {{ short_url.original_url }}</td>
             <td> {{ short_url.access_count }}</td>
             <td>
-              <form action="{% url 'shorten_url_delete' short_url.code %}", method = "post">
+              <form action="{% url 'shorten_url_detail' short_url.code %}" method="post">
                 {% csrf_token %}
+                <input type="hidden" name="_method" value="DELETE"> <!--서버에만 전달되는 값-->
                 <button type="submit" class="btn btn-danger btn-sm">삭제</button>
               </form>
             </td>

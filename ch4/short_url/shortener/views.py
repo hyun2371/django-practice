@@ -40,8 +40,13 @@ class ShortURLDetailView(View):
         short_url.save()
         return redirect(short_url.original_url)
 
-class ShortURLDeleteView(View):
-    def post(self, request, code): # form은 GET, POST 메서드만 사용 가능
+    def delete(self, request, code):
         short_url = get_object_or_404(ShortURL, code=code)
         short_url.delete()
         return redirect("home")
+#
+# class ShortURLDeleteView(View):
+#     def post(self, request, code): # form은 GET, POST 메서드만 사용 가능
+#         short_url = get_object_or_404(ShortURL, code=code)
+#         short_url.delete()
+#         return redirect("home")
