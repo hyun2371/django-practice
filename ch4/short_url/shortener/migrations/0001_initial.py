@@ -5,13 +5,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    initial = True
+    initial = True # 최초 파일
 
-    dependencies = [
+    dependencies = [ # 마이그레이션 파일 간 의존성
     ]
 
-    operations = [
-        migrations.CreateModel(
+    operations = [ # 동작 순서 정의
+        migrations.CreateModel( # 테이블 생성
             name='ShortURL',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
