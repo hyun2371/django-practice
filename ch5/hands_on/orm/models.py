@@ -17,3 +17,14 @@ class Order(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     price = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
+
+class Project(models.Model):
+    name = models.CharField(max_length=20) # 가상의 컬럼
+    users = models.ManyToManyField(CustomUser)
+
+# 다대다 필드 -> 중간 테이블 자동 생성
+"""
+class ProjectUser(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+"""
