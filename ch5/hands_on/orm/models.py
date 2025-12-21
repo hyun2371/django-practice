@@ -20,11 +20,12 @@ class Order(models.Model):
 
 class Project(models.Model):
     name = models.CharField(max_length=20) # 가상의 컬럼
-    users = models.ManyToManyField(CustomUser)
+    users = models.ManyToManyField(CustomUser, through='ProjectUser') # ProjectUser 모델을 중간 테이블로 써라 명시
 
-# 다대다 필드 -> 중간 테이블 자동 생성
-"""
 class ProjectUser(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    customuser = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-"""
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = 'orm_project_user'
