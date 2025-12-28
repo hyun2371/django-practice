@@ -6,3 +6,9 @@ class CustomUser(AbstractUser):
     uuid = models.UUIDField(
         default=uuid.uuid4, editable=False, db_index=True
     )
+    # media/profiles/.jpg
+    image = models.ImageField(
+        upload_to="profiles/",
+        null=True,
+    )
+
