@@ -1,0 +1,18 @@
+services:
+  db:
+    container_name: django_db
+    image: postgres:16
+    restart: always
+    volumes:
+      - local_db:/var/lib/postgresql/data # 호스트시스템: 컨테이너 안
+    environment:
+      POSTGRES_DB: hands_on
+      POSTGRES_USER: dev_user
+      POSTGRES_PASSWORD: securepassword
+      PGDATA: /var/lib/postgresql/data/django_db/ # 저장 경로 관리
+    ports:
+      - "5432:5432"
+
+volumes:
+  local_db:
+
