@@ -12,6 +12,11 @@ services:
       PGDATA: /var/lib/postgresql/data/django_db/ # 저장 경로 관리
     ports:
       - "5432:5432"
+  cache:
+    container_name: django_redis
+    image: redis:7.4
+    ports:
+      - "63790:6379"
 
 volumes:
   local_db:

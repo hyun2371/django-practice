@@ -1,7 +1,7 @@
 from django.core.mail import send_mail, EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
-
+from django.core.cache import cache
 
 def send_str_email(email_to):
     send_mail(
@@ -13,12 +13,19 @@ def send_str_email(email_to):
 
 
 def send_html_email(email_to):
-    subject = "새로운 이메일이 도착했습니다."
-    html = render_to_string("email.html")
+    email_html_cache_key = "email_html"
+
+    if not (html := cache.get(key=email_html_cache_key)): # 기존에 캐시에 없으면
+        print("새로운 html 파일을 읽는 중...")
+        html = render_to_string("email.html")
+        cache.set(key=email_html_cache_key, value=html)
+
     message = EmailMessage(
-        subject, html,
+       "새로운 이메일이 도착했습니다.",
+        html,
         settings.EMAIL_HOST_USER,
         [email_to]
     )
     message.content_subtype = "html"
     message.send()
+
