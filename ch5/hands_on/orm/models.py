@@ -1,36 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-
+import uuid
 
 class CustomUser(AbstractUser):
-    # profile = models.OneToOneField() 역참조 필드 생성됨
-    # user.order_set.all() 일대다 조회
-    pass
-
-
-class Profile(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    bio = models.TextField(blank=True)
-
-
-class Order(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    price = models.PositiveIntegerField(default=0)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-class Project(models.Model):
-    name = models.CharField(max_length=20) # 가상의 컬럼
-#     users = models.ManyToManyField(CustomUser, through='ProjectUser') # ProjectUser 모델을 중간 테이블로 써라 명시
-#
-# class ProjectUser(models.Model):
-#     customuser = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-#     project = models.ForeignKey(Project, on_delete=models.CASCADE)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#
-#     class Meta:
-#         db_table = 'orm_project_user'
-
-class UserProjectRelation(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
-    project = models.ForeignKey(Profile, on_delete=models.CASCADE)
-    created_at = models.DateTimeField(auto_now_add=True)
+    uuid = models.UUIDField(
+        default=uuid.uuid4, editable=False, db_index=True
+    )
